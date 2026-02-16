@@ -1,0 +1,26 @@
+environments:
+  dev:
+    values:
+      - environments/dev/values.yaml
+---
+
+repositories:
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+
+releases:
+
+  - name: ingress-nginx
+    namespace: ingress-nginx
+    createNamespace: true
+    chart: ingress-nginx/ingress-nginx
+    values:
+      - environments/{{ .Environment.Name }}/ingress-nginx.values.yaml
+
+  - name: example-app
+    namespace: example-app
+    createNamespace: true
+    chart: charts/example-app
+    values:
+      - environments/{{ .Environment.Name }}/values.yaml
+
