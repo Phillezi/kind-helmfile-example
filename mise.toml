@@ -5,11 +5,12 @@ helmfile = "1.2"
 kubectl = "1.34"
 
 [tasks.lint-dev]
+env = { KUBECONFIG = ".secrets/dev-kubeconfig" }
 description = "Lint helmfile for dev environment"
 run = "helmfile -e dev lint"
 
 [tasks.deploy-dev]
+env = { KUBECONFIG = ".secrets/dev-kubeconfig" }
 depends = ["create-kind-cluster"]
 description = "Deploy helmfile to dev environment"
-run = "KUBECONFIG=.secrets/dev-kubeconfig helmfile -e dev sync"
-
+run = "helmfile -e dev sync"
