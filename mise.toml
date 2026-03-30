@@ -1,4 +1,5 @@
 [tools]
+kind = "0.31"
 helm = "4.1"
 helmfile = "1.2"
 kubectl = "1.34"
